@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>List of all films</title>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+
+        .poster {
+            width: 200px;
+            height: 131px;
+            border: 1px solid green;
+        }
+
+        .films {
+            border: 1px solid steelblue;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .films tr td, th {
+            padding: 5px;
+            border: 1px solid steelblue;
+        }
+
+        .films td:nth-child(1) {
+            width: 200px;
+        }
+
+        .films td:nth-child(2) {
+            width: 50px;
+        }
+
+        .films td:nth-child(3) {
+            width: 200px;
+        }
+
+        .films td:nth-child(4), td:nth-child(5) {
+            width: 150px;
+        }
+
+        .films td:nth-child(6) {
+            width: 450px;
+        }
+    </style>
+</head>
+<body>
+
+<h3>
+    Длительность загрузки данных: <span th:text="${duration}">1000</span> сек
+</h3>
+
+<h3>Films:</h3>
+<table class="films">
+    <thead>
+    <tr>
+        <th>Poster</th>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Genre</th>
+        <th>Director</th>
+        <th>Actors</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="film : ${films}" th:object="${film}">
+        <td><img class="poster" th:src="@{'data:image/png;base64,' + *{poster}}"/></td>
+        <td th:text="*{id}">0</td>
+        <td th:text="*{title}">NoValue</td>
+        <td th:text="*{genre}">NoValue</td>
+        <td th:text="*{director}">NoValue</td>
+        <td th:text="*{actors}">NoValue</td>
+        <td th:text="*{description}">NoValue</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
